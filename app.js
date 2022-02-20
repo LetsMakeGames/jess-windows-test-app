@@ -45,7 +45,15 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
   try {
     await client.chat.postMessage({
       channel: view.state.values.modal_channel_select_block.sm_channel_selected.selected_channel,
-      text: msg
+      blocks: [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": msg
+          }
+        }
+      ]
     });
   }
   catch (error) {
