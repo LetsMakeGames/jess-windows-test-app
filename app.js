@@ -18,9 +18,9 @@ app.event('app_home_opened', async ({ event, client, logger }) => {
   }
 });
 
-app.action('sendMessage_button1', async ({ ack, event, client, logger }) => {
+app.action('sendMessage_button1', async ({ ack, body, client, logger }) => {
   // Update the message to reflect the action
-  appInteract.button(ack, event, client, logger);
+  appInteract.button(ack, body, client, logger);
 });
 
 (async () => {

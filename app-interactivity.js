@@ -1,8 +1,8 @@
 const app = require("./app.js")
 
-async function button (ack, event, client, logger) {
+async function button (ack, body, client, logger) {
     await ack();
-    
+
     try {
 
         // Call views.open with the built-in client
