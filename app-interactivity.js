@@ -22,7 +22,7 @@ async function button (ack, body, client, logger) {
                     type: "section",
                     text: {
                         type: "mrkdwn",
-                        text: `Event Body: \n\`${body}\``
+                        text: `Event Body: \n\`${JSON.stringify(body)}\``
                     }
                 },
                 {
