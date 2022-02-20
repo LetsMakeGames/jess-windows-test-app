@@ -40,8 +40,42 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
 
   // Message to send user
   let msg = view.state.values.message_input_block.message_input.value;
+  let img = view.state.values.image_input_block.image_input.value;
 
-  // Message the user
+  if (img != null) {
+    try {
+
+      await client.chat.postMessage({
+
+        channel: view.state.values.modal_channel_select_block.sm_channel_selected.selected_channel,
+        blocks: [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": msg
+            }
+          },
+          {
+            "type": "image",
+            "title": {
+              "type": "plain_text",
+              "text": "A public shared image",
+              "emoji": true
+            },
+            "image_url": img,
+            "alt_text": "image"
+          }
+        ]
+
+      });
+    }
+
+    catch (error) {
+      logger.error(error);
+    }
+  } else {
+    // Message the user
   try {
     await client.chat.postMessage({
       channel: view.state.values.modal_channel_select_block.sm_channel_selected.selected_channel,
@@ -59,7 +93,7 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
   catch (error) {
     logger.error(error);
   }
-
+  }
 });
 
 (async () => {

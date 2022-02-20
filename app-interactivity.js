@@ -59,6 +59,19 @@ async function button (ack, body, client, logger) {
                       action_id: 'message_input',
                       multiline: true
                     }
+                },
+                {
+                    type: 'input',
+                    block_id: 'image_input_block',
+                    label: {
+                      type: 'plain_text',
+                      text: 'Public Image URL:'
+                    },
+                    element: {
+                      type: 'plain_text_input',
+                      action_id: 'image_input',
+                      multiline: false
+                    }
                 }
             ],
             submit: {
