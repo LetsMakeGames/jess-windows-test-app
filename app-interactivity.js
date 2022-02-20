@@ -2,15 +2,14 @@ const app = require("./app.js")
 
 async function button (ack, body, client, logger) {
     await ack();
-
+    
     try {
-
         // Call views.open with the built-in client
         const result = await client.views.open({
-          // Pass a valid trigger_id within 3 seconds of receiving it
-          trigger_id: body.trigger_id,
-          // View payload
-          view: {
+        // Pass a valid trigger_id within 3 seconds of receiving it
+        trigger_id: body.trigger_id,
+        // View payload
+        view: {
             type: 'modal',
             // View identifier
             callback_id: 'view_1',
@@ -19,45 +18,52 @@ async function button (ack, body, client, logger) {
               text: 'Modal title'
             },
             blocks: [
-              {
-                type: 'section',
-                text: {
-                  type: 'mrkdwn',
-                  text: 'Welcome to a modal with _blocks_'
+                {
+                    type: "section",
+                    text: {
+                        type: "mrkdwn",
+                        text: "What channel would you like to message?"
+                    }
                 },
-                accessory: {
-                  type: 'button',
-                  text: {
-                    type: 'plain_text',
-                    text: 'Click me!'
-                  },
-                  action_id: 'button_abc'
-                }
-              },
-              {
-                type: 'input',
-                block_id: 'input_c',
-                label: {
-                  type: 'plain_text',
-                  text: 'What are your hopes and dreams?'
+                {
+                    type: "actions",
+                    elements: [
+                        {
+                            type: "channels_select",
+                            placeholder: {
+                                type: "plain_text",
+                                text: "Select a channel",
+                                emoji: true
+                            },
+                            action_id: "actionId-1"
+                        }
+                    ]
                 },
-                element: {
-                  type: 'plain_text_input',
-                  action_id: 'dreamy_input',
-                  multiline: true
+                {
+                    type: 'input',
+                    block_id: 'input_b',
+                    label: {
+                      type: 'plain_text',
+                      text: 'What is your message?'
+                    },
+                    element: {
+                      type: 'plain_text_input',
+                      action_id: 'message_input',
+                      multiline: true
+                    }
                 }
-              }
             ],
             submit: {
-              type: 'plain_text',
-              text: 'Submit'
+                type: 'plain_text',
+                text: 'Submit'
             }
-          }
+            }
         });
+        
         logger.info(result);
-      }
-
-      catch (error) {
+    }
+    
+    catch (error) {
         logger.error(error);
     }
 }
