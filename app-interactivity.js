@@ -22,6 +22,13 @@ async function button (ack, body, client, logger) {
                     type: "section",
                     text: {
                         type: "mrkdwn",
+                        text: `Event Body: \n\`${body}\``
+                    }
+                },
+                {
+                    type: "section",
+                    text: {
+                        type: "mrkdwn",
                         text: "What channel would you like to message?"
                     }
                 },
