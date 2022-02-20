@@ -71,7 +71,8 @@ async function button (ack, body, client, logger) {
                       type: 'plain_text_input',
                       action_id: 'image_input',
                       multiline: false
-                    }
+                    },
+                    optional: true
                 }
             ],
             submit: {
