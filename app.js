@@ -39,7 +39,7 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
   const user = body['user']['id'];
 
   // Message to send user
-  let msg = JSON.stringify(view);
+  let msg = JSON.stringify(view.state);
 
   // Message the user
   try {
