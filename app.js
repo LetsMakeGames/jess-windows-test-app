@@ -30,6 +30,11 @@ app.action('sm-channel-selected', async ({ ack }) => {
   await ack();
 });
 
+app.action('debug-message-view-action', async ({ ack, body, view }) => {
+  await ack();
+  console.log(view);
+});
+
 app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
   // Acknowledge the view_submission request
   await ack();
@@ -37,17 +42,25 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
   // Assume there's an input block with `block_1` as the block_id and `input_a`
   const val = view['state']['values']['message_input_block']['message_input'];
   const user = body['user']['id'];
+  const inputs = view.state.values;
 
   // Message to send user
-  let msg = view.state.values.message_input_block.message_input.value;
-  let img = view.state.values.image_input_block.image_input.value;
+  let msg = inputs.message_input_block.message_input.value;
+  let img = inputs.image_input_block.image_input.value;
 
+  // Bot Customizations to use for message
+  let bot = {
+    username: inputs.bot_name_input_block.bot_name_input.value,
+    icon: inputs.bot_icon_input_block.bot_icon_input.value
+  }
   if (img != null) {
     try {
 
       await client.chat.postMessage({
 
         channel: view.state.values.modal_channel_select_block.sm_channel_selected.selected_channel,
+        username: bot.username,
+        icon_url: bot.icon,
         blocks: [
           {
             "type": "section",
