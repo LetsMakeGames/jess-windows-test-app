@@ -1,9 +1,9 @@
 const {app} = require("./app.js")
 const views = require('./app-views.js')
 
-async function button (ack, body, client, logger) {
+async function button (ack, body, client, logger, debug_mode) {
     await ack();
-    const messageView = views.getMessageView();
+    const messageView = views.getMessageView(body, debug_mode);
     
     try {
         // Call views.open with the built-in client

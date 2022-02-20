@@ -2,12 +2,15 @@ require('dotenv').config()
 const { App } = require('@slack/bolt');
 const appHome = require('./app-home.js')
 const appInteract = require('./app-interactivity.js')
+const views = require('./app-views.js')
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
+
+let debug_mode = false;
 
 app.event('app_home_opened', async ({ event, client, logger }) => {
   try {
@@ -23,16 +26,58 @@ app.event('app_home_opened', async ({ event, client, logger }) => {
 
 app.action('sendMessage_button1', async ({ ack, body, client, logger }) => {
   // Update the message to reflect the action
-  appInteract.button(ack, body, client, logger);
+  debug_mode = false;
+  appInteract.button(ack, body, client, logger, debug_mode);
 });
 
 app.action('sm-channel-selected', async ({ ack }) => {
   await ack();
 });
 
-app.action('debug-message-view-action', async ({ ack, body, view }) => {
+app.action('debug-message-view-action', async ({ ack, body, client, logger, view }) => {
   await ack();
-  console.log(view);
+  debug_mode = !debug_mode
+
+  try {
+    updatedView = views.debugMessageView(body, debug_mode);
+    // Call views.update with the built-in client
+    const result = await client.views.update({
+      // Pass the view_id
+      view_id: body.view.id,
+      // Pass the current hash to avoid race conditions
+      hash: body.view.hash,
+      // View payload with updated blocks
+      view: {
+        type: 'modal',
+        // View identifier
+        callback_id: 'view_1',
+        title: {
+          type: 'plain_text',
+          text: 'Updated modal'
+        },
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'plain_text',
+              text: 'You updated the modal!'
+            }
+          },
+          {
+            type: 'image',
+            image_url: 'https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif',
+            alt_text: 'Yay! The modal was updated'
+          }
+        ]
+      }
+    });
+    logger.info(result);
+  }
+  catch (error) {
+    logger.error(error);
+  }
+
+
 });
 
 app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
@@ -53,7 +98,7 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
     username: inputs.bot_name_input_block.bot_name_input.value,
     icon: inputs.bot_icon_input_block.bot_icon_input.value
   }
-  
+
   if (img != null) {
     try {
 
