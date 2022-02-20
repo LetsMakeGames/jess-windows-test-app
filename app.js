@@ -34,7 +34,7 @@ app.action('sm-channel-selected', async ({ ack }) => {
   await ack();
 });
 
-app.action('debug-message-view-action', async ({ ack, body, client, logger, view }) => {
+app.action('debug_mode_toggled', async ({ ack, body, client, logger, view }) => {
   await ack();
   debug_mode = !debug_mode
 

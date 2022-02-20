@@ -65,8 +65,9 @@ function getMessageView (body) {
               "value": "debug-mode"
             }
           ],
-          "action_id": "debug-message-view-action"
+          "action_id": "debug-mode-toggled"
         },
+        optional: true,
         "label": {
           "type": "plain_text",
           "text": "Debug Mode Test",
@@ -184,6 +185,7 @@ function debugMessageView (body, debug_mode) {
               "value": "debug-mode"
             }
           ],
+          "optional": true,
           "action_id": "debug-message-view-action"
         },
         "initial_options": [
