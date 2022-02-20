@@ -41,8 +41,8 @@ function getHomeView () {
   return home_view;
 }
 
-function getMessageView() {
-  message_view = {
+function getMessageView () {
+  const message_view = {
     type: 'modal',
     // View identifier
     callback_id: 'send_message_view',
