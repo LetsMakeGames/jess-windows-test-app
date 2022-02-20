@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { App } = require('@slack/bolt');
 const appHome = require('./app-home.js')
 

@@ -1,6 +1,6 @@
 const app = require("./app.js")
 
-function homeOpened (event, client, logger) {
+async function homeOpened (event, client, logger) {
     // Call views.publish with the built-in client
     const result = await client.views.publish({
         // Use the user ID associated with the event
