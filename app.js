@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { App } = require('@slack/bolt');
 const appHome = require('./app-home.js')
+const appInteract = require('./app-interactivity.js')
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
@@ -9,13 +10,18 @@ const app = new App({
 });
 
 app.event('app_home_opened', async ({ event, client, logger }) => {
-    try {
-        appHome.homeOpened(event, client, logger);
-    }
-    catch (error) {
-      logger.error(error);
-    }
-  });
+  try {
+      appHome.homeOpened(event, client, logger);
+  }
+  catch (error) {
+    logger.error(error);
+  }
+});
+
+app.action('sendMessage_button1', async ({ ack, event, client, logger }) => {
+  // Update the message to reflect the action
+  appInteract.button(ack, event, client, logger);
+});
 
 (async () => {
   // Start your app

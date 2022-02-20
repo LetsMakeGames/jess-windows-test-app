@@ -22,6 +22,21 @@ async function homeOpened (event, client, logger) {
                 "type": "mrkdwn",
                 "text": "Learn how home tabs can be more useful and interactive <https://api.slack.com/surfaces/tabs/using|*in the documentation*>."
               }
+            },
+            {
+              "type": "actions",
+              "elements": [
+                {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Send Message",
+                    "emoji": true
+                  },
+                  "value": "sendMessage1",
+                  "action_id": "sendMessage_button1"
+                }
+              ]
             }
           ]
         }
