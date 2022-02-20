@@ -1,4 +1,4 @@
-const app = require("./app.js")
+const {app} = require("./app.js")
 
 async function button (ack, body, client, logger) {
     await ack();
