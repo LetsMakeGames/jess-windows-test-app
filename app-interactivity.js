@@ -42,7 +42,7 @@ async function button (ack, body, client, logger) {
                                 text: "Select a channel",
                                 emoji: true
                             },
-                            action_id: "actionId-1"
+                            action_id: "sm-channel-selected"
                         }
                     ]
                 },
