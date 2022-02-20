@@ -34,7 +34,7 @@ async function button (ack, body, client, logger) {
                 },
                 {
                     type: "actions",
-                    block_id: "modal-channel-select-block",
+                    block_id: "modal_channel_select_block",
                     elements: [
                         {
                             type: "channels_select",
@@ -43,7 +43,7 @@ async function button (ack, body, client, logger) {
                                 text: "Select a channel",
                                 emoji: true
                             },
-                            action_id: "sm-channel-selected"
+                            action_id: "sm_channel_selected"
                         }
                     ]
                 },

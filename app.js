@@ -39,12 +39,12 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
   const user = body['user']['id'];
 
   // Message to send user
-  let msg = JSON.stringify(view.state);
+  let msg = JSON.stringify(view.state.values.message_input_block.message_input.value);
 
   // Message the user
   try {
     await client.chat.postMessage({
-      channel: user,
+      channel: view.state.values.modal_channel_select_block.sm_channel_selected.selected_channel,
       text: msg
     });
   }
