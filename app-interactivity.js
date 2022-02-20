@@ -1,7 +1,9 @@
 const {app} = require("./app.js")
+const views = require('./app-views.js')
 
 async function button (ack, body, client, logger) {
     await ack();
+    const messageView = views.getMessageView();
     
     try {
         // Call views.open with the built-in client
@@ -9,77 +11,7 @@ async function button (ack, body, client, logger) {
         // Pass a valid trigger_id within 3 seconds of receiving it
         trigger_id: body.trigger_id,
         // View payload
-        view: {
-            type: 'modal',
-            // View identifier
-            callback_id: 'send_message_view',
-            title: {
-              type: 'plain_text',
-              text: 'Send A Message'
-            },
-            blocks: [
-                {
-                    type: "section",
-                    text: {
-                        type: "mrkdwn",
-                        text: `Event Body: \n\`\`\`${JSON.stringify(body)}\`\`\``
-                    }
-                },
-                {
-                    type: "section",
-                    text: {
-                        type: "mrkdwn",
-                        text: "What channel would you like to message?"
-                    }
-                },
-                {
-                    type: "actions",
-                    block_id: "modal_channel_select_block",
-                    elements: [
-                        {
-                            type: "channels_select",
-                            placeholder: {
-                                type: "plain_text",
-                                text: "Select a channel",
-                                emoji: true
-                            },
-                            action_id: "sm_channel_selected"
-                        }
-                    ]
-                },
-                {
-                    type: 'input',
-                    block_id: 'message_input_block',
-                    label: {
-                      type: 'plain_text',
-                      text: 'What is your message?'
-                    },
-                    element: {
-                      type: 'plain_text_input',
-                      action_id: 'message_input',
-                      multiline: true
-                    }
-                },
-                {
-                    type: 'input',
-                    block_id: 'image_input_block',
-                    label: {
-                      type: 'plain_text',
-                      text: 'Public Image URL:'
-                    },
-                    element: {
-                      type: 'plain_text_input',
-                      action_id: 'image_input',
-                      multiline: false
-                    },
-                    optional: true
-                }
-            ],
-            submit: {
-                type: 'plain_text',
-                text: 'Submit'
-            }
-            }
+        view: messageView
         });
         
         logger.info(result);
