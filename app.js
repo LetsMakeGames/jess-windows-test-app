@@ -53,6 +53,7 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
     username: inputs.bot_name_input_block.bot_name_input.value,
     icon: inputs.bot_icon_input_block.bot_icon_input.value
   }
+  
   if (img != null) {
     try {
 
@@ -115,7 +116,3 @@ app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
 
   console.log('⚡️ Bolt app is running!');
 })();
-
-module.exports = {
-    app
-};
