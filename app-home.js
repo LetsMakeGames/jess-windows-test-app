@@ -11,6 +11,7 @@ async function homeOpened (event, client, logger) {
           "blocks": [
             {
               "type": "section",
+              "block_id": "home-welcome-block",
               "text": {
                 "type": "mrkdwn",
                 "text": "*Welcome home, <@" + event.user + "> :house:*"
@@ -18,6 +19,7 @@ async function homeOpened (event, client, logger) {
             },
             {
               "type": "section",
+              "block_id": "home-learn-more-block",
               "text": {
                 "type": "mrkdwn",
                 "text": "Learn how home tabs can be more useful and interactive <https://api.slack.com/surfaces/tabs/using|*in the documentation*>."
@@ -25,6 +27,7 @@ async function homeOpened (event, client, logger) {
             },
             {
               "type": "actions",
+              "block_id": "home-send-message-block",
               "elements": [
                 {
                   "type": "button",

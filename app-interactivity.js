@@ -34,6 +34,7 @@ async function button (ack, body, client, logger) {
                 },
                 {
                     type: "actions",
+                    block_id: "modal-channel-select-block",
                     elements: [
                         {
                             type: "channels_select",
