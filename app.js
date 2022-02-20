@@ -30,6 +30,29 @@ app.action('sm-channel-selected', async ({ ack }) => {
   await ack();
 });
 
+app.view('send_message_view', async ({ ack, body, view, client, logger }) => {
+  // Acknowledge the view_submission request
+  await ack();
+
+  // Assume there's an input block with `block_1` as the block_id and `input_a`
+  const val = view['state']['values']['message_input_block']['message_input'];
+  const user = body['user']['id'];
+
+  // Message to send user
+  let msg = JSON.stringify(view);
+
+  // Message the user
+  try {
+    await client.chat.postMessage({
+      channel: user,
+      text: msg
+    });
+  }
+  catch (error) {
+    logger.error(error);
+  }
+
+});
 
 (async () => {
   // Start your app
