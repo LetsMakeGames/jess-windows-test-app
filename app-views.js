@@ -68,7 +68,7 @@ function getMessageView (body) {
                 "text": "enabled",
                 "emoji": true
               },
-              "value": true
+              "value": "true"
             },
             {
               "text": {
@@ -76,7 +76,7 @@ function getMessageView (body) {
                 "text": "disabled",
                 "emoji": true
               },
-              "value": false
+              "value": "false"
             }
           ],
           "action_id": "debug_mode_toggled"
@@ -203,7 +203,7 @@ function debugMessageView (body, debug_mode) {
                   "text": "enabled",
                   "emoji": true
                 },
-                "value": true
+                "value": "true"
               },
               {
                 "text": {
@@ -211,7 +211,7 @@ function debugMessageView (body, debug_mode) {
                   "text": "disabled",
                   "emoji": true
                 },
-                "value": false
+                "value": "false"
               }
             ],
             "action_id": "debug_mode_toggled"
@@ -339,7 +339,7 @@ function debugMessageView (body, debug_mode) {
                   "text": "enabled",
                   "emoji": true
                 },
-                "value": true
+                "value": "true"
               },
               {
                 "text": {
@@ -347,7 +347,7 @@ function debugMessageView (body, debug_mode) {
                   "text": "disabled",
                   "emoji": true
                 },
-                "value": false
+                "value": "false"
               }
             ],
             "action_id": "debug_mode_toggled"
