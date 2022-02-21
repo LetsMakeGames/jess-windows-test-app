@@ -54,7 +54,6 @@ function getMessageView (body) {
       {
         "type": "input",
         "block_id": "debug_mode_block",
-        "optional": true,
         "element": {
           "type": "static_select",
           "placeholder": {
@@ -190,7 +189,6 @@ function debugMessageView (body, debug_mode) {
         {
           "type": "input",
           "block_id": "debug_mode_block",
-          "optional": true,
           "element": {
             "type": "static_select",
             "placeholder": {
@@ -327,7 +325,6 @@ function debugMessageView (body, debug_mode) {
         {
           "type": "input",
           "block_id": "debug_mode_block",
-          "optional": true,
           "element": {
             "type": "static_select",
             "placeholder": {
