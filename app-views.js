@@ -53,24 +53,38 @@ function getMessageView (body) {
     blocks: [
       {
         "type": "input",
+        "block_id": "debug_mode_block",
+        "optional": true,
         "element": {
-          "type": "checkboxes",
+          "type": "static_select",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Disabled",
+            "emoji": true
+          },
           "options": [
             {
               "text": {
                 "type": "plain_text",
-                "text": "Enable",
+                "text": "enabled",
                 "emoji": true
               },
-              "value": "debug-mode"
+              "value": true
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "disabled",
+                "emoji": true
+              },
+              "value": flase
             }
           ],
-          "action_id": "debug-mode-toggled"
+          "action_id": "debug_mode_toggled"
         },
-        optional: true,
         "label": {
           "type": "plain_text",
-          "text": "Debug Mode Test",
+          "text": "Debog Mode Test",
           "emoji": true
         }
       },
@@ -175,25 +189,38 @@ function debugMessageView (body, debug_mode) {
       blocks: [
         {
           "type": "input",
-          "block_id": "debug_mode_toggled",
+          "block_id": "debug_mode_block",
+          "optional": true,
           "element": {
-            "type": "checkboxes",
+            "type": "static_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "Enabled",
+              "emoji": true
+            },
             "options": [
               {
                 "text": {
                   "type": "plain_text",
-                  "text": "Enable",
+                  "text": "enabled",
                   "emoji": true
                 },
-                "value": "false"
+                "value": true
+              },
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "disabled",
+                  "emoji": true
+                },
+                "value": false
               }
             ],
-            "action_id": "debug-mode-toggled"
+            "action_id": "debug_mode_toggled"
           },
-          optional: true,
           "label": {
             "type": "plain_text",
-            "text": "Debug Mode Test",
+            "text": "Debog Mode Test",
             "emoji": true
           }
         },
@@ -299,25 +326,38 @@ function debugMessageView (body, debug_mode) {
       blocks: [
         {
           "type": "input",
-          "block_id": "debug_mode_toggled",
+          "block_id": "debug_mode_block",
+          "optional": true,
           "element": {
-            "type": "checkboxes",
+            "type": "static_select",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "Disabled",
+              "emoji": true
+            },
             "options": [
               {
                 "text": {
                   "type": "plain_text",
-                  "text": "Enable",
+                  "text": "enabled",
                   "emoji": true
                 },
-                "value": "true"
+                "value": true
+              },
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "disabled",
+                  "emoji": true
+                },
+                "value": false
               }
             ],
-            "action_id": "debug-mode-toggled"
+            "action_id": "debug_mode_toggled"
           },
-          optional: true,
           "label": {
             "type": "plain_text",
-            "text": "Debug Mode Test",
+            "text": "Debog Mode Test",
             "emoji": true
           }
         },
