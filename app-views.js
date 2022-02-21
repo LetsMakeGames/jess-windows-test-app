@@ -51,42 +51,42 @@ function getMessageView (body) {
       text: 'Send A Message'
     },
     blocks: [
-      {
-        "type": "input",
-        "block_id": "debug_mode_block",
-        "element": {
-          "type": "static_select",
-          "placeholder": {
-            "type": "plain_text",
-            "text": "Disabled",
-            "emoji": true
-          },
-          "options": [
-            {
-              "text": {
-                "type": "plain_text",
-                "text": "enabled",
-                "emoji": true
-              },
-              "value": "true"
-            },
-            {
-              "text": {
-                "type": "plain_text",
-                "text": "disabled",
-                "emoji": true
-              },
-              "value": "false"
-            }
-          ],
-          "action_id": "debug_mode_toggled"
-        },
-        "label": {
-          "type": "plain_text",
-          "text": "Debog Mode Test",
-          "emoji": true
-        }
-      },
+      // {
+      //   "type": "input",
+      //   "block_id": "debug_mode_block",
+      //   "element": {
+      //     "type": "static_select",
+      //     "placeholder": {
+      //       "type": "plain_text",
+      //       "text": "Disabled",
+      //       "emoji": true
+      //     },
+      //     "options": [
+      //       {
+      //         "text": {
+      //           "type": "plain_text",
+      //           "text": "enabled",
+      //           "emoji": true
+      //         },
+      //         "value": "true"
+      //       },
+      //       {
+      //         "text": {
+      //           "type": "plain_text",
+      //           "text": "disabled",
+      //           "emoji": true
+      //         },
+      //         "value": "false"
+      //       }
+      //     ],
+      //     "action_id": "debug_mode_toggled"
+      //   },
+      //   "label": {
+      //     "type": "plain_text",
+      //     "text": "Debog Mode Test",
+      //     "emoji": true
+      //   }
+      // },
       {
         type: "section",
         text: {
@@ -200,7 +200,7 @@ function debugMessageView (body, debug_mode) {
               {
                 "text": {
                   "type": "plain_text",
-                  "text": "enabled",
+                  "text": "Enabled",
                   "emoji": true
                 },
                 "value": "true"
@@ -208,7 +208,7 @@ function debugMessageView (body, debug_mode) {
               {
                 "text": {
                   "type": "plain_text",
-                  "text": "disabled",
+                  "text": "Disabled",
                   "emoji": true
                 },
                 "value": "false"
