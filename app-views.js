@@ -77,7 +77,7 @@ function getMessageView (body) {
                 "text": "disabled",
                 "emoji": true
               },
-              "value": flase
+              "value": false
             }
           ],
           "action_id": "debug_mode_toggled"
