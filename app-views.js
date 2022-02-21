@@ -162,138 +162,251 @@ function getMessageView (body) {
 }
 
 function debugMessageView (body, debug_mode) {
-  const message_view = {
-    type: 'modal',
-    // View identifier
-    callback_id: 'send_message_view',
-    title: {
-      type: 'plain_text',
-      text: 'Send A Message'
-    },
-    blocks: [
-      {
-        "type": "input",
-        "element": {
-          "type": "checkboxes",
-          "options": [
-            {
-              "text": {
-                "type": "plain_text",
-                "text": "Enable",
-                "emoji": true
-              },
-              "value": "debug-mode"
-            }
-          ],
-          "optional": true,
-          "action_id": "debug-message-view-action"
-        },
-        "initial_options": [
-          {
-            "text": {
-              "type": "plain_text",
-              "text": "Enable",
-              "emoji": true
-            },
-            "value": "debug-mode"
-          }          
-        ],
-        "label": {
-          "type": "plain_text",
-          "text": "Debug Mode Test",
-          "emoji": true
-        }
-      },
-      {
-        type: "section",
-        text: {
-            type: "mrkdwn",
-            text: `Event Body: \n\`\`\`${JSON.stringify(body)}\`\`\``
-        }
-      },
-      {
-        type: "section",
-        text: {
-            type: "mrkdwn",
-            text: "What channel would you like to message?"
-        }
-      },
-      {
-        type: "actions",
-        block_id: "modal_channel_select_block",
-        elements: [
-            {
-                type: "channels_select",
-                placeholder: {
-                    type: "plain_text",
-                    text: "Select a channel",
-                    emoji: true
-                },
-                action_id: "sm_channel_selected"
-            }
-        ]
-      },
-      {
-        type: 'input',
-        block_id: 'message_input_block',
-        label: {
-          type: 'plain_text',
-          text: 'What is your message?'
-        },
-        element: {
-          type: 'plain_text_input',
-          action_id: 'message_input',
-          multiline: true
-        }
-      },
-      {
-        type: 'input',
-        block_id: 'image_input_block',
-        label: {
-          type: 'plain_text',
-          text: 'Public Image URL:'
-        },
-        element: {
-          type: 'plain_text_input',
-          action_id: 'image_input',
-          multiline: false
-        },
-        optional: true
-      },
-      {
-        type: 'input',
-        block_id: 'bot_name_input_block',
-        label: {
-          type: 'plain_text',
-          text: 'Bot Username'
-        },
-        element: {
-          type: 'plain_text_input',
-          action_id: 'bot_name_input',
-          multiline: true
-        },
-        optional: true
-      },
-      {
-        type: 'input',
-        block_id: 'bot_icon_input_block',
-        label: {
-          type: 'plain_text',
-          text: 'Bot Avatar Public Image URL'
-        },
-        element: {
-          type: 'plain_text_input',
-          action_id: 'bot_icon_input',
-          multiline: true
-        },
-        optional: true
-      }
-    ],
-    submit: {
+
+  if(debug_mode == true) {
+    const message_view = {
+      type: 'modal',
+      // View identifier
+      callback_id: 'send_message_view',
+      title: {
         type: 'plain_text',
-        text: 'Submit'
+        text: 'Send A Message'
+      },
+      blocks: [
+        {
+          "type": "input",
+          "block_id": "debug_mode_toggled",
+          "element": {
+            "type": "checkboxes",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "Enable",
+                  "emoji": true
+                },
+                "value": "false"
+              }
+            ],
+            "action_id": "debug-mode-toggled"
+          },
+          optional: true,
+          "label": {
+            "type": "plain_text",
+            "text": "Debug Mode Test",
+            "emoji": true
+          }
+        },
+        {
+          type: "section",
+          text: {
+              type: "mrkdwn",
+              text: `Event Body: \n\`\`\`${JSON.stringify(body)}\`\`\``
+          }
+        },
+        {
+          type: "section",
+          text: {
+              type: "mrkdwn",
+              text: "What channel would you like to message?"
+          }
+        },
+        {
+          type: "actions",
+          block_id: "modal_channel_select_block",
+          elements: [
+              {
+                  type: "channels_select",
+                  placeholder: {
+                      type: "plain_text",
+                      text: "Select a channel",
+                      emoji: true
+                  },
+                  action_id: "sm_channel_selected"
+              }
+          ]
+        },
+        {
+          type: 'input',
+          block_id: 'message_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'What is your message?'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'message_input',
+            multiline: true
+          }
+        },
+        {
+          type: 'input',
+          block_id: 'image_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'Public Image URL:'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'image_input',
+            multiline: false
+          },
+          optional: true
+        },
+        {
+          type: 'input',
+          block_id: 'bot_name_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'Bot Username'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'bot_name_input',
+            multiline: true
+          },
+          optional: true
+        },
+        {
+          type: 'input',
+          block_id: 'bot_icon_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'Bot Avatar Public Image URL'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'bot_icon_input',
+            multiline: true
+          },
+          optional: true
+        }
+      ],
+      submit: {
+          type: 'plain_text',
+          text: 'Submit'
+      }
+    }
+  } else {
+    const message_view = {
+      type: 'modal',
+      // View identifier
+      callback_id: 'send_message_view',
+      title: {
+        type: 'plain_text',
+        text: 'Send A Message'
+      },
+      blocks: [
+        {
+          "type": "input",
+          "block_id": "debug_mode_toggled",
+          "element": {
+            "type": "checkboxes",
+            "options": [
+              {
+                "text": {
+                  "type": "plain_text",
+                  "text": "Enable",
+                  "emoji": true
+                },
+                "value": "true"
+              }
+            ],
+            "action_id": "debug-mode-toggled"
+          },
+          optional: true,
+          "label": {
+            "type": "plain_text",
+            "text": "Debug Mode Test",
+            "emoji": true
+          }
+        },
+        {
+          type: "section",
+          text: {
+              type: "mrkdwn",
+              text: "What channel would you like to message?"
+          }
+        },
+        {
+          type: "actions",
+          block_id: "modal_channel_select_block",
+          elements: [
+              {
+                  type: "channels_select",
+                  placeholder: {
+                      type: "plain_text",
+                      text: "Select a channel",
+                      emoji: true
+                  },
+                  action_id: "sm_channel_selected"
+              }
+          ]
+        },
+        {
+          type: 'input',
+          block_id: 'message_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'What is your message?'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'message_input',
+            multiline: true
+          }
+        },
+        {
+          type: 'input',
+          block_id: 'image_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'Public Image URL:'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'image_input',
+            multiline: false
+          },
+          optional: true
+        },
+        {
+          type: 'input',
+          block_id: 'bot_name_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'Bot Username'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'bot_name_input',
+            multiline: true
+          },
+          optional: true
+        },
+        {
+          type: 'input',
+          block_id: 'bot_icon_input_block',
+          label: {
+            type: 'plain_text',
+            text: 'Bot Avatar Public Image URL'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'bot_icon_input',
+            multiline: true
+          },
+          optional: true
+        }
+      ],
+      submit: {
+          type: 'plain_text',
+          text: 'Submit'
+      }
     }
   }
+
+  return message_view
 }
 
 module.exports = {

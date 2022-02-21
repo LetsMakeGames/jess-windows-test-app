@@ -36,7 +36,7 @@ app.action('sm-channel-selected', async ({ ack }) => {
 
 app.action('debug_mode_toggled', async ({ ack, body, client, logger, view }) => {
   await ack();
-  debug_mode = !debug_mode
+  debug_mode = view.state.values.debug_mode_block.debug_mode_toggled.value
 
   try {
     updatedView = views.debugMessageView(body, debug_mode);
@@ -47,29 +47,7 @@ app.action('debug_mode_toggled', async ({ ack, body, client, logger, view }) => 
       // Pass the current hash to avoid race conditions
       hash: body.view.hash,
       // View payload with updated blocks
-      view: {
-        type: 'modal',
-        // View identifier
-        callback_id: 'view_1',
-        title: {
-          type: 'plain_text',
-          text: 'Updated modal'
-        },
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'plain_text',
-              text: 'You updated the modal!'
-            }
-          },
-          {
-            type: 'image',
-            image_url: 'https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif',
-            alt_text: 'Yay! The modal was updated'
-          }
-        ]
-      }
+      view: updatedView
     });
     logger.info(result);
   }
