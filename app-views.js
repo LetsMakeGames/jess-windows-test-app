@@ -176,7 +176,7 @@ function getMessageView (body) {
 
 function debugMessageView (body, debug_mode) {
 
-  if(debug_mode == true) {
+  if(debug_mode == "true") {
     const message_view = {
       type: 'modal',
       // View identifier
